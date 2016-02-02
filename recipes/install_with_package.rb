@@ -10,3 +10,7 @@ service 'graphite-api' do
   action :nothing
   supports start: true, stop: true, status: true, restart: true, reload: true
 end
+
+python_pip 'graphite_influxdb' do
+  action :install
+end if node['graphite_api']['influxdb']['enabled']

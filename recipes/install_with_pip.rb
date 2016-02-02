@@ -25,6 +25,10 @@ end
   end
 end
 
+python_pip 'graphite_influxdb' do
+  action :install
+end if node['graphite_api']['influxdb']['enabled']
+
 template '/etc/init.d/graphite-api' do
   source 'graphite-api-init.erb'
   mode 0755
