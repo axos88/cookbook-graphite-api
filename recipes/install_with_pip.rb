@@ -1,5 +1,5 @@
 include_recipe 'build-essential'
-include_recipe 'python'
+include_recipe 'poise-python'
 
 directory '/srv/graphite' do
   owner 'root'
@@ -20,12 +20,12 @@ end
 end
 
 %w(gunicorn graphite-api).each do |pkg|
-  python_pip pkg do
+  python_package pkg do
     action :install
   end
 end
 
-python_pip 'graphite_influxdb' do
+python_package 'graphite_influxdb' do
   action :install
 end if node['graphite_api']['influxdb']['enabled']
 
